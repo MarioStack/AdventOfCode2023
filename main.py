@@ -2,10 +2,11 @@ import code
 import os
 
 SEP = os.path.sep
+ABSOLUTE_PATH = os.path.dirname(__file__)
 
 FILE_DIC = {
-    1: f"C:{SEP}GITHUB{SEP}AdventOfCode2023{SEP}files{SEP}input_day1.txt",
-    2: f"C:{SEP}GITHUB{SEP}AdventOfCode2023{SEP}files{SEP}input_day2.txt"
+    1: f"{ABSOLUTE_PATH}{SEP}files{SEP}input_day1.txt",
+    2: f"{ABSOLUTE_PATH}{SEP}files{SEP}input_day2.txt"
 }
 
 

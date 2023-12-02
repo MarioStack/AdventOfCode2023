@@ -30,7 +30,9 @@ def day_two(input_file):
     possible_games = 0
     highest_values_multiplied = 0
 
-    line_list = open(input_file, "r").read().splitlines()
+    with open(input_file, "r") as f:
+        line_list = f.read().splitlines()
+
     for i in line_list:
         line_dict = {}
         game = re.findall(r'\d+', i[:i.index(":")])[0]
