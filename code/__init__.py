@@ -1,3 +1,3 @@
-from code import day1
-from code import day2
+from code.day1 import day_one
+from code.day2 import day_two
 
