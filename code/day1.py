@@ -19,7 +19,10 @@ def get_num_from_string(string):
 
 
 def day_one(input_file):
-    line_list = open(input_file, "r").read().split()
+
+    with open(input_file, "r") as f:
+        line_list = f.read().split()
+
     first_digit = ""
     second_digit = ""
     total = 0
