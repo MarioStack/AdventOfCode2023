@@ -1,4 +1,4 @@
-num_dic = {
+NUM_DIC = {
     "one": "1",
     "two": "2",
     "three": "3",
@@ -12,26 +12,24 @@ num_dic = {
 }
 
 
-def get_num_from_string(string):
-    for i in num_dic:
-        if i in string:
-            return num_dic[i]
+def get_num_from_string(string: str) -> str:
+    for key, value in NUM_DIC.items():
+        if key in string:
+            return value
 
 
-def day_one(input_file):
+def day_one(input_file: str) -> int:
 
     with open(input_file, "r") as f:
         line_list = f.read().split()
-
     first_digit = ""
     second_digit = ""
     total = 0
 
     for line in line_list:
-        first_builder = ""
-        second_builder = ""
+        first_builder, second_builder = "", ""
         for i in line:
-            first_builder = first_builder + i
+            first_builder += i
             response = get_num_from_string(first_builder)
             if response is not None:
                 first_digit = response
@@ -41,8 +39,9 @@ def day_one(input_file):
                 break
             else:
                 continue
+
         for x in line[::-1]:
-            second_builder = second_builder + x
+            second_builder += x
             response = get_num_from_string(second_builder[::-1])
             if response is not None:
                 second_digit = response
@@ -50,8 +49,6 @@ def day_one(input_file):
             elif x.isdigit():
                 second_digit = x
                 break
-            else:
-                continue
         total += int(first_digit + second_digit)
 
     return total
