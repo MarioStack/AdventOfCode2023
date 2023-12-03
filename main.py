@@ -12,8 +12,8 @@ FILE_DIC = {
 
 
 def main():
-    #print(code.day_one(FILE_DIC[1]))
-    #print(code.day_two(FILE_DIC[2]))
+    print(code.day_one(FILE_DIC[1]))
+    print(code.day_two(FILE_DIC[2]))
     print(code.day_three(FILE_DIC[3]))
 
 
