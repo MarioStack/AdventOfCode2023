@@ -1,7 +1,5 @@
+from typing import Tuple
 import re
-import math
-
-game_dict = {}
 
 cube_values_dict = {
     "green": 13,
@@ -10,7 +8,7 @@ cube_values_dict = {
 }
 
 
-def get_highest_values(game_num, ball_line):
+def get_highest_values(ball_line: str) -> dict[str, int]:
     ball_list = ball_line.split(";")
     temp_ball_dict = {}
 
@@ -23,30 +21,27 @@ def get_highest_values(game_num, ball_line):
             value_and_ball = x.split()
             if int(value_and_ball[0]) > int(temp_ball_dict[value_and_ball[1]]):
                 temp_ball_dict.update({value_and_ball[1]: value_and_ball[0]})
+
     return temp_ball_dict
 
 
-def day_two(input_file):
-    possible_games = 0
-    highest_values_multiplied = 0
-
+def day_two(input_file: str) -> Tuple[int, int]:
     with open(input_file, "r") as f:
         line_list = f.read().splitlines()
 
-    for i in line_list:
-        line_dict = {}
-        game = re.findall(r'\d+', i[:i.index(":")])[0]
+    possible_games = 0
+    highest_values_multiplied = 0
+    game_dict = {}
 
-        highest_values = get_highest_values(game, i[i.index(":") + 1:])
+    for i in line_list:
+        game = re.findall(r'\d+', i[:i.index(":")])[0]
+        highest_values = get_highest_values(i[i.index(":") + 1:])
         game_dict.update({game: highest_values})
 
     for i in game_dict:
         add_to_sum = True
-
-        for x in cube_values_dict:
-            if int(cube_values_dict[x]) >= int(game_dict[i][x]):
-                continue
-            else:
+        for color, value in cube_values_dict.items():
+            if value < int(game_dict[i][color]):
                 add_to_sum = False
 
         if add_to_sum:
@@ -60,3 +55,4 @@ def day_two(input_file):
 
     return possible_games, highest_values_multiplied
 
+#(2164, 69929)
